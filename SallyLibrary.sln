@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SallyLibrary.App", "SallyLibrary.App\SallyLibrary.App.csproj", "{8D3E50E2-43C3-433A-A0B8-5D5E0F861BE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D3E50E2-43C3-433A-A0B8-5D5E0F861BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D3E50E2-43C3-433A-A0B8-5D5E0F861BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D3E50E2-43C3-433A-A0B8-5D5E0F861BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D3E50E2-43C3-433A-A0B8-5D5E0F861BE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9A5D268C-4699-41D3-A637-44C66507649B}
+	EndGlobalSection
+EndGlobal
