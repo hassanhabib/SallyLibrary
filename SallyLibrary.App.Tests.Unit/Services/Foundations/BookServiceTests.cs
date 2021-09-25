@@ -4,6 +4,7 @@
 // ---------------------------------------------------------------
 
 using FluentAssertions;
+using Force.DeepCloner;
 using Moq;
 using SallyLibrary.App.Brokers.Storages;
 using SallyLibrary.App.Models.Books;
@@ -32,7 +33,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             var randomBook = new Book();
             Book inputBook = randomBook;
             Book storageBook = inputBook;
-            Book expectedBook = storageBook;
+            Book expectedBook = storageBook.DeepClone();
 
             this.storageBrokerMock.Setup(broker =>
                 broker.InsertBook(inputBook))
