@@ -17,7 +17,10 @@ namespace SallyLibrary.App.Services.Foundations.Books
 
         public Book AddBook(Book book)
         {
-            throw new NotImplementedException();
+            Book storageBook = 
+                this.storageBroker.InsertBook(book);
+
+            return storageBook;
         }
     }
 }
