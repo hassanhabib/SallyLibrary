@@ -3,6 +3,8 @@
 // FREE TO USE AS LONG AS SOFTWARE FUNDS ARE DONATED TO THE POOR
 // ---------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
 using SallyLibrary.App.Models.Books;
 
 namespace SallyLibrary.App.Brokers.Storages

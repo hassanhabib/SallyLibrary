@@ -3,6 +3,8 @@
 // FREE TO USE AS LONG AS SOFTWARE FUNDS ARE DONATED TO THE POOR
 // ---------------------------------------------------------------
 
+using System;
+
 namespace SallyLibrary.App.Models.Books
 {
     public class Book
