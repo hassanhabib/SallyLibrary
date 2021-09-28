@@ -16,17 +16,10 @@ namespace SallyLibrary.App.Services.Foundations.Books
         public BookService(IStorageBroker storageBroker) =>
             this.storageBroker = storageBroker;
 
-        public Book AddBook(Book book)
-        {
-            Book storageBook = 
-                this.storageBroker.InsertBook(book);
+        public Book AddBook(Book book) =>
+            this.storageBroker.InsertBook(book);
 
-            return storageBook;
-        }
-
-        public Book RetrieveBookById(Guid id)
-        {
-            throw new System.NotImplementedException();
-        }
+        public Book RetrieveBookById(Guid id) =>
+            this.storageBroker.SelectBookById(id);
     }
 }
