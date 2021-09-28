@@ -35,7 +35,7 @@ namespace SallyLibrary.App.Brokers.Storages
 
         public Book DeleteBook(Book book)
         {
-            Books.RemoveAll(book => book.Id == book.Id);
+            Books.Remove(book);
 
             return book;
         }
