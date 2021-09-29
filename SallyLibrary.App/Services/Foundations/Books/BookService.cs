@@ -22,9 +22,8 @@ namespace SallyLibrary.App.Services.Foundations.Books
         public Book RetrieveBookById(Guid id) =>
             this.storageBroker.SelectBookById(id);
 
-        public Book ModifyBook(Book book)
-        {
-            throw new NotImplementedException();
-        }
+        public Book ModifyBook(Book book) =>
+            this.storageBroker.UpdateBook(book);
+       
     }
 }
