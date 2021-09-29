@@ -17,30 +17,26 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
     public partial class BookServiceTests
     {
         [Fact]
-        public void ShouldRetrieveBookById()
+        public void ShouldRemoveBookById()
         {
-            // given
-            Guid randomId = Guid.NewGuid();
-            Guid inputBookId = randomId;
+            //given
             Book randomBook = new Book();
-            Book storageBook = randomBook;
+            Guid inputBookId = randomBook.Id;
+
+            Book inputBook = randomBook;
+            Book storageBook = inputBook;
             Book expectedBook = storageBook;
 
-            this.storageBrokerMock.Setup(broker =>
-                broker.SelectBookById(inputBookId))
-                    .Returns(storageBook);
+            this.storageBrokerMock.Setup(broker => broker.SelectBookById(inputBookId)).Returns(inputBook);
+            this.storageBrokerMock.Setup(broker => broker.DeleteBook(inputBook)).Returns(storageBook);
 
-            // when
-            Book actualBook = 
-                this.bookService.RetrieveBookById(inputBookId);
+            //when
+            Book actualBook = this.bookService.RemoveBookById(inputBookId);
 
-            // then
+            //then
             actualBook.Should().BeEquivalentTo(expectedBook);
-
-            this.storageBrokerMock.Verify(broker =>
-                broker.SelectBookById(inputBookId),
-                    Times.Once);
-
+            this.storageBrokerMock.Verify(broker => broker.SelectBookById(inputBookId), Times.Once);
+            this.storageBrokerMock.Verify(broker => broker.DeleteBook(inputBook), Times.Once);
             this.storageBrokerMock.VerifyNoOtherCalls();
         }
     }
