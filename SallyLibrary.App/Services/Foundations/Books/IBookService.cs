@@ -12,5 +12,6 @@ namespace SallyLibrary.App.Services.Foundations.Books
     {
         Book AddBook(Book book);
         Book RetrieveBookById(Guid id);
+        Book ModifyBook(Book book);
     }
 }
