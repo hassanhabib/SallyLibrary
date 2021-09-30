@@ -27,10 +27,12 @@ namespace SallyLibrary.App.Services.Foundations.Books
 
         public Book RemoveBookById(Guid id)
         {
-            throw new NotImplementedException();
+            Book SelectedBook = this.storageBroker.SelectBookById(id);
+            Book deleteBook = this.storageBroker.DeleteBook(SelectedBook);
+            return deleteBook;
         }
 
-        
+
     }
 }
 
