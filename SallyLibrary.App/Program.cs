@@ -6,6 +6,6 @@ var storageBroker = new StorageBroker();
 var bookService = new BookService(storageBroker);
 var book = new Book();
 
-bookService.AddBook(book);
+bookService.AddBook(null);
 
 // test
