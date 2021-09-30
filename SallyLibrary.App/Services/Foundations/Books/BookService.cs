@@ -29,6 +29,5 @@ namespace SallyLibrary.App.Services.Foundations.Books
 
         public Book ModifyBook(Book book) =>
             this.storageBroker.UpdateBook(book);
-
     }
 }
