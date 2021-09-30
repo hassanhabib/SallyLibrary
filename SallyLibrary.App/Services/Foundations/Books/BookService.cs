@@ -10,7 +10,7 @@ using SallyLibrary.App.Models.Books.Exceptions;
 
 namespace SallyLibrary.App.Services.Foundations.Books
 {
-    public class BookService : IBookService
+    public partial class BookService : IBookService
     {
         private readonly IStorageBroker storageBroker;
 
@@ -19,10 +19,7 @@ namespace SallyLibrary.App.Services.Foundations.Books
 
         public Book AddBook(Book book)
         {
-            if(book is null)
-            {
-                throw new NullBookException();
-            }
+            ValidateBook(book);
 
             return this.storageBroker.InsertBook(book);
         }
@@ -32,6 +29,6 @@ namespace SallyLibrary.App.Services.Foundations.Books
 
         public Book ModifyBook(Book book) =>
             this.storageBroker.UpdateBook(book);
-       
+
     }
 }
