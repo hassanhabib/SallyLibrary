@@ -6,6 +6,7 @@
 using System;
 using SallyLibrary.App.Brokers.Storages;
 using SallyLibrary.App.Models.Books;
+using SallyLibrary.App.Models.Books.Exceptions;
 
 namespace SallyLibrary.App.Services.Foundations.Books
 {
@@ -16,8 +17,15 @@ namespace SallyLibrary.App.Services.Foundations.Books
         public BookService(IStorageBroker storageBroker) =>
             this.storageBroker = storageBroker;
 
-        public Book AddBook(Book book) =>
-            this.storageBroker.InsertBook(book);
+        public Book AddBook(Book book)
+        {
+            if(book is null)
+            {
+                throw new NullBookException();
+            }
+
+            return this.storageBroker.InsertBook(book);
+        }
 
         public Book RetrieveBookById(Guid id) =>
             this.storageBroker.SelectBookById(id);
