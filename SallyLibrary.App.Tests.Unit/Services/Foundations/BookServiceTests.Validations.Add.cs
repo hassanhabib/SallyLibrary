@@ -55,7 +55,6 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 values: "Text is required");
 
             // when
-            // when
             Action addBookAction = () =>
                 this.bookService.AddBook(invalidBook);
 
