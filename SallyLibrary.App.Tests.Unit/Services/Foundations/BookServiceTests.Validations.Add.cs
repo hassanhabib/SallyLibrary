@@ -50,6 +50,10 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 key: nameof(Book.Id),
                 values: "Id is required");
 
+            expectedInvalidBookException.AddData(
+                key: nameof(Book.Title),
+                values: "Text is required");
+
             // when
             // when
             Action addBookAction = () =>
@@ -59,8 +63,8 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             InvalidBookException actualInvalidBookException = 
                 Assert.Throws<InvalidBookException>(addBookAction);
 
-            actualInvalidBookException.DataEquals(expectedInvalidBookException.Data)
-                .Should().BeTrue();
+            actualInvalidBookException.Data.Should().BeEquivalentTo(
+                expectedInvalidBookException.Data);
 
             this.storageBrokerMock.Verify(broker =>
                 broker.InsertBook(It.IsAny<Book>()),
