@@ -36,5 +36,35 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
 
             this.storageBrokerMock.VerifyNoOtherCalls();
         }
+
+        [Fact]
+        public void ShouldThrowInvalidBookExceptionIfBookIsInvalid()
+        {
+            // given
+            var invalidBook = new Book();
+            var expectedInvalidBookException = new InvalidBookException();
+
+            expectedInvalidBookException.AddData(
+                key: nameof(Book.Id),
+                values: "Id is required");
+
+            // when
+            // when
+            Action addBookAction = () =>
+                this.bookService.AddBook(invalidBook);
+
+            // then
+            InvalidBookException actualInvalidBookException = 
+                Assert.Throws<InvalidBookException>(addBookAction);
+
+            actualInvalidBookException.DataEquals(expectedInvalidBookException.Data)
+                .Should().BeTrue();
+
+            this.storageBrokerMock.Verify(broker =>
+                broker.InsertBook(It.IsAny<Book>()),
+                    Times.Never);
+
+            this.storageBrokerMock.VerifyNoOtherCalls();
+        }
     }
 }

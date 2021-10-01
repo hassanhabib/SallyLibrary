@@ -30,6 +30,7 @@ namespace SallyLibrary.App.Services.Foundations.Books
         public Book ModifyBook(Book book)
         {
             ValidateBook(book);
+
             return this.storageBroker.UpdateBook(book);
         }
     }
