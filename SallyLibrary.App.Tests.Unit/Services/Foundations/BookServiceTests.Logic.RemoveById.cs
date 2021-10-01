@@ -28,7 +28,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
 
             this.storageBrokerMock.Setup(broker =>
                 broker.SelectBookById(inputBookId))
-                .Returns(inputbook);
+                    .Returns(inputbook);
 
             this.storageBrokerMock.Setup(broker =>
                 broker.DeleteBook(inputbook))
