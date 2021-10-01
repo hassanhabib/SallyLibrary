@@ -20,12 +20,18 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         public void ShouldModifyBook()
         {
             // given
-            var randomBook = new Book();
+            var randomBook = new Book
+            {
+                Id = Guid.NewGuid()
+            };
+
             Book inputBook = randomBook;
             Book storageBook = inputBook;
             Book expectedBook = storageBook;
 
-            this.storageBrokerMock.Setup(broker => broker.UpdateBook(inputBook)).Returns(storageBook);
+            this.storageBrokerMock.Setup(broker => 
+                broker.UpdateBook(inputBook))
+                    .Returns(storageBook);
 
             //when
             Book actualBook = this.bookService.ModifyBook(inputBook);

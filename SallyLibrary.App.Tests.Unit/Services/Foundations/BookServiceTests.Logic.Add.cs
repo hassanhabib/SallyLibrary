@@ -1,8 +1,9 @@
-        // ---------------------------------------------------------------
+// ---------------------------------------------------------------
 // Copyright (c) Coalition of the Good-Hearted Engineers
 // FREE TO USE AS LONG AS SOFTWARE FUNDS ARE DONATED TO THE POOR
 // ---------------------------------------------------------------
 
+using System;
 using FluentAssertions;
 using Force.DeepCloner;
 using Moq;
@@ -19,7 +20,11 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         public void ShouldAddBook()
         {
             // given
-            var randomBook = new Book();
+            var randomBook = new Book
+            {
+                Id = Guid.NewGuid()
+            };
+
             Book inputBook = randomBook;
             Book storageBook = inputBook;
             Book expectedBook = storageBook.DeepClone();

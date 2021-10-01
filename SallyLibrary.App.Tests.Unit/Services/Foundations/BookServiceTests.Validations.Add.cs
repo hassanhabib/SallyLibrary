@@ -42,7 +42,9 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         {
             // given
             var invalidBook = new Book();
-            var expectedInvalidBookException = new InvalidBookException();
+            
+            var expectedInvalidBookException = 
+                new InvalidBookException();
 
             expectedInvalidBookException.AddData(
                 key: nameof(Book.Id),
