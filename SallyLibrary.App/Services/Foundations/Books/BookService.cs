@@ -27,7 +27,10 @@ namespace SallyLibrary.App.Services.Foundations.Books
         public Book RetrieveBookById(Guid id) =>
             this.storageBroker.SelectBookById(id);
 
-        public Book ModifyBook(Book book) =>
-            this.storageBroker.UpdateBook(book);
+        public Book ModifyBook(Book book)
+        {
+            ValidateBook(book);
+            return this.storageBroker.UpdateBook(book);
+        }
     }
 }

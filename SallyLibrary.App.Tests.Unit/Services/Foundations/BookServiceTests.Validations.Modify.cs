@@ -22,7 +22,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         {
             // given
             Book nullBook = null;
-
+            
             // when
             Action modifyBookAction = () =>
                 this.bookService.ModifyBook(nullBook);
