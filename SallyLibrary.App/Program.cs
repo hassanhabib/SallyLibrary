@@ -7,6 +7,7 @@ var bookService = new BookService(storageBroker);
 var book = new Book();
 
 bookService.AddBook(null);
+bookService.ModifyBook(null);
 
 // measure the commitment between the clients, the services and the dependencies
 // based on the causes of the exceptions and it's ratios in your system
