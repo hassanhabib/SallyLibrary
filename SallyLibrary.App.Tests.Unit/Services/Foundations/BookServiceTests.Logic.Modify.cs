@@ -25,7 +25,9 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             Book storageBook = inputBook;
             Book expectedBook = storageBook;
 
-            this.storageBrokerMock.Setup(broker => broker.UpdateBook(inputBook)).Returns(storageBook);
+            this.storageBrokerMock.Setup(broker =>
+                broker.UpdateBook(inputBook))
+                    .Returns(storageBook);
 
             //when
             Book actualBook = this.bookService.ModifyBook(inputBook);

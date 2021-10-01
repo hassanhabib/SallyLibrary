@@ -22,13 +22,17 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             // given
             Book randomBook = new Book();
             Guid inputBookId = randomBook.Id;
-
             Book inputbook = randomBook;
             Book storageBook = inputbook;
             Book expectedBook = storageBook;
 
-            this.storageBrokerMock.Setup(broker => broker.SelectBookById(inputBookId)).Returns(inputbook);
-            this.storageBrokerMock.Setup(broker => broker.DeleteBook(inputbook)).Returns(storageBook);
+            this.storageBrokerMock.Setup(broker =>
+                broker.SelectBookById(inputBookId))
+                .Returns(inputbook);
+
+            this.storageBrokerMock.Setup(broker =>
+                broker.DeleteBook(inputbook))
+                    .Returns(storageBook);
 
             //when
             Book actualBook = this.bookService.RemoveBookById(inputBookId);
@@ -36,8 +40,13 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             //then
             actualBook.Should().BeEquivalentTo(expectedBook);
 
-            this.storageBrokerMock.Verify(broker => broker.SelectBookById(inputBookId), Times.Once);
-            this.storageBrokerMock.Verify(broker => broker.DeleteBook(inputbook), Times.Once);
+            this.storageBrokerMock.Verify(broker =>
+                broker.SelectBookById(inputBookId),
+                    Times.Once);
+
+            this.storageBrokerMock.Verify(broker =>
+                broker.DeleteBook(inputbook),
+                    Times.Once);
 
             this.storageBrokerMock.VerifyNoOtherCalls();
         }

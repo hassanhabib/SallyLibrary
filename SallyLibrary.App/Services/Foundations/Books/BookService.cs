@@ -29,10 +29,9 @@ namespace SallyLibrary.App.Services.Foundations.Books
         {
             Book SelectedBook = this.storageBroker.SelectBookById(id);
             Book deleteBook = this.storageBroker.DeleteBook(SelectedBook);
+
             return deleteBook;
         }
-
-
     }
 }
 
