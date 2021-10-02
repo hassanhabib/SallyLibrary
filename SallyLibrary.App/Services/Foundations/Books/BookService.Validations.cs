@@ -10,6 +10,9 @@ namespace SallyLibrary.App.Services.Foundations.Books
         {
             ValidateBookIsNotNull(book);
             Validate((Rule: IsInvalid(book.Id), Parameter: nameof(Book.Id)));
+                  //,(Rule: IsInvalid(book.Title), Parameter: nameof(Book.Title))
+                //);
+                    
         }
 
         private static void ValidateBookIsNotNull(Book book)
@@ -25,6 +28,12 @@ namespace SallyLibrary.App.Services.Foundations.Books
             Condition = id == Guid.Empty,
             Message = "Id is required"
         };
+
+        //private static dynamic IsInvalid(string title) => new
+        //{
+        //    Condition = title ==String.Empty,
+        //    Message = "Text is required"
+        //};
 
         private static void Validate(params (dynamic Rule, string Parameter)[] validations)
         {
