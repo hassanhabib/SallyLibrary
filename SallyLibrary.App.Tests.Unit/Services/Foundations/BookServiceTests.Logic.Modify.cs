@@ -28,7 +28,8 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 Author = "something",
                 Price = 2,
                 ISBN = "Something",
-                PageCount = 2
+                PageCount = 2,
+                ReleaseDate = new DateTime(2008, 5, 1, 8, 30, 0)
             };
 
             Book inputBook = randomBook;
