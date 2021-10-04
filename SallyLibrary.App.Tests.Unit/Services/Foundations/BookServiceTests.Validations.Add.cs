@@ -80,7 +80,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
 
             expectedInvalidBookException.AddData(
             key: nameof(Book.InStock),
-            values: "Date is required");
+            values: "LogicAnswer is required");
 
             // when
             Action addBookAction = () =>
