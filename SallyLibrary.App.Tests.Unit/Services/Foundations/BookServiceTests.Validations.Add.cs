@@ -74,6 +74,10 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
              key: nameof(Book.PageCount),
              values: "Number is required");
 
+            expectedInvalidBookException.AddData(
+            key: nameof(Book.ReleaseDate),
+            values: "Date is required");
+
             // when
             Action addBookAction = () =>
                 this.bookService.AddBook(invalidBook);
