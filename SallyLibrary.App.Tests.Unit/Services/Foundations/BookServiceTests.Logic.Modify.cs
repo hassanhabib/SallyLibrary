@@ -26,7 +26,8 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 Title = "AnotherThing",
                 Description = "Something",
                 Author = "something",
-                Price = 2
+                Price = 2,
+                ISBN = "Something"
             };
 
             Book inputBook = randomBook;
