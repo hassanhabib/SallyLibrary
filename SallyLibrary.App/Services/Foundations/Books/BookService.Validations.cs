@@ -13,7 +13,8 @@ namespace SallyLibrary.App.Services.Foundations.Books
             Validate(
                 (Rule: IsInvalid(book.Id), Parameter: nameof(Book.Id)),
                 (Rule: IsInvalid(book.Title), Parameter: nameof(Book.Title)),
-                (Rule: IsInvalid(book.Description), Parameter: nameof(Book.Description)));
+                (Rule: IsInvalid(book.Description), Parameter: nameof(Book.Description)),
+                (Rule: IsInvalid(book.Author), Parameter: nameof(Book.Author)));
         }
 
         private static void ValidateBookIsNotNull(Book book)
