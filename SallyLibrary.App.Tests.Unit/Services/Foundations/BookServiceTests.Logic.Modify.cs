@@ -25,7 +25,8 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 Id = Guid.NewGuid(),
                 Title = "AnotherThing",
                 Description = "Something",
-                Author = "something"
+                Author = "something",
+                Price = 2
             };
 
             Book inputBook = randomBook;
