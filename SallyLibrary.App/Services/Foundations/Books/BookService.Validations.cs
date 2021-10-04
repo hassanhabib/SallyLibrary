@@ -18,7 +18,8 @@ namespace SallyLibrary.App.Services.Foundations.Books
                 (Rule: IsInvalid(book.Price), Parameter: nameof(Book.Price)),
                 (Rule: IsInvalid(book.ISBN), Parameter: nameof(Book.ISBN)),
                 (Rule: IsInvalid(book.PageCount), Parameter: nameof(Book.PageCount)),
-                (Rule: IsInvalid(book.ReleaseDate), Parameter: nameof(Book.ReleaseDate)));
+                (Rule: IsInvalid(book.ReleaseDate), Parameter: nameof(Book.ReleaseDate)),
+                (Rule: IsInvalid(book.InStock), Parameter: nameof(Book.InStock)));
         }
 
         private static void ValidateBookIsNotNull(Book book)
@@ -57,6 +58,12 @@ namespace SallyLibrary.App.Services.Foundations.Books
         {
             Condition = date == default,
             Message = "Date is required"
+        };
+
+         private static dynamic IsInvalid(bool input) => new
+        {
+            Condition = input == default,
+            Message = "LogicAnswer is required"
         };
 
         private static void Validate(params (dynamic Rule, string Parameter)[] validations)

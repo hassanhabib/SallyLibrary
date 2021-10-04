@@ -29,7 +29,8 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 Price = 2.2,
                 ISBN = "Something",
                 PageCount = 2,
-                ReleaseDate = new DateTime(2008, 5, 1, 8, 30, 0)
+                ReleaseDate = new DateTime(2008, 5, 1, 8, 30, 0),
+                InStock = true
             };
 
             Book inputBook = randomBook;
