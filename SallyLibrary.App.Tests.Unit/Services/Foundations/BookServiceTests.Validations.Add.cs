@@ -62,6 +62,10 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
               key: nameof(Book.Author),
               values: "Text is required");
 
+            expectedInvalidBookException.AddData(
+              key: nameof(Book.Price),
+              values: "Price is required");
+
             // when
             Action addBookAction = () =>
                 this.bookService.AddBook(invalidBook);
