@@ -16,10 +16,10 @@ namespace SallyLibrary.App.Services.Foundations.Books
                 (Rule: IsInvalid(book.Description), Parameter: nameof(Book.Description)),
                 (Rule: IsInvalid(book.Author), Parameter: nameof(Book.Author)),
                 (Rule: IsInvalid(book.Price), Parameter: nameof(Book.Price)),
-                (Rule: IsInvalid(book.ISBN), Parameter: nameof(Book.ISBN)),
                 (Rule: IsInvalid(book.PageCount), Parameter: nameof(Book.PageCount)),
                 (Rule: IsInvalid(book.ReleaseDate), Parameter: nameof(Book.ReleaseDate)),
-                (Rule: IsInvalid(book.InStock), Parameter: nameof(Book.InStock)));
+                (Rule: IsInvalid(book.InStock), Parameter: nameof(Book.InStock)),
+                (Rule: IsInvalid(book.ISBN), Parameter: nameof(Book.ISBN)));
         }
 
         private static void ValidateBookIsNotNull(Book book)
@@ -42,15 +42,15 @@ namespace SallyLibrary.App.Services.Foundations.Books
             Message = "Text is required"
         };
 
-        private static dynamic IsInvalid(double Number) => new
+        private static dynamic IsInvalid(double number) => new
         {
-            Condition = Number == default,
+            Condition = number == default,
             Message = "Price is required"
         };
 
-        private static dynamic IsInvalid(int Number) => new
+        private static dynamic IsInvalid(int number) => new
         {
-            Condition = Number == default,
+            Condition = number == default,
             Message = "Number is required"
         };
 
@@ -60,7 +60,7 @@ namespace SallyLibrary.App.Services.Foundations.Books
             Message = "Date is required"
         };
 
-         private static dynamic IsInvalid(bool input) => new
+        private static dynamic IsInvalid(bool input) => new
         {
             Condition = input == default,
             Message = "LogicAnswer is required"
