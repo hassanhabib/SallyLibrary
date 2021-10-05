@@ -4,6 +4,7 @@
 // ---------------------------------------------------------------
 
 using System;
+using FluentAssertions;
 using Moq;
 using SallyLibrary.App.Models.Books;
 using SallyLibrary.App.Models.Books.Exceptions;
@@ -32,5 +33,37 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
 
             this.storageBrokerMock.VerifyNoOtherCalls();
         }
+
+        [Fact]
+        public void ShouldThrowInvalidBookExceptionOnModifyIfTheBookIsInvalid()
+        {
+            // given
+            var invalidBook = new Book();
+
+            var expectedInvalidBookException =
+                new InvalidBookException();
+
+            expectedInvalidBookException.AddData(
+                key: nameof(Book.Id),
+                values: "Id is required");
+
+            // when
+            Action ModifyBookAction = () =>
+                this.bookService.ModifyBook(invalidBook);
+
+            // then
+            InvalidBookException actualInvalidBookException =
+                Assert.Throws<InvalidBookException>(ModifyBookAction);
+
+            actualInvalidBookException.Data.Should().BeEquivalentTo(
+                expectedInvalidBookException.Data);
+
+            this.storageBrokerMock.Verify(broker =>
+                broker.UpdateBook(It.IsAny<Book>()),
+                    Times.Never);
+
+            this.storageBrokerMock.VerifyNoOtherCalls();
+        }
+
     }
 }
