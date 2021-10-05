@@ -43,9 +43,42 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             var expectedInvalidBookException =
                 new InvalidBookException();
 
+
             expectedInvalidBookException.AddData(
                 key: nameof(Book.Id),
                 values: "Id is required");
+
+            expectedInvalidBookException.AddData(
+                key: nameof(Book.Title),
+                values: "Text is required");
+
+            expectedInvalidBookException.AddData(
+                key: nameof(Book.Description),
+                values: "Text is required");
+
+            expectedInvalidBookException.AddData(
+                key: nameof(Book.Author),
+                values: "Text is required");
+
+            expectedInvalidBookException.AddData(
+                key: nameof(Book.Price),
+                values: "Price is required");
+
+            expectedInvalidBookException.AddData(
+                key: nameof(Book.PageCount),
+                values: "Number is required");
+
+            expectedInvalidBookException.AddData(
+                key: nameof(Book.ReleaseDate),
+                values: "Date is required");
+
+            expectedInvalidBookException.AddData(
+                key: nameof(Book.InStock),
+                values: "LogicAnswer is required");
+
+            expectedInvalidBookException.AddData(
+                key: nameof(Book.ISBN),
+                values: "Text is required");
 
             // when
             Action ModifyBookAction = () =>
