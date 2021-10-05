@@ -9,7 +9,17 @@ namespace SallyLibrary.App.Services.Foundations.Books
         private static void ValidateBook(Book book)
         {
             ValidateBookIsNotNull(book);
-            Validate((Rule: IsInvalid(book.Id), Parameter: nameof(Book.Id)));
+
+            Validate(
+                (Rule: IsInvalid(book.Id), Parameter: nameof(Book.Id)),
+                (Rule: IsInvalid(book.Title), Parameter: nameof(Book.Title)),
+                (Rule: IsInvalid(book.Description), Parameter: nameof(Book.Description)),
+                (Rule: IsInvalid(book.Author), Parameter: nameof(Book.Author)),
+                (Rule: IsInvalid(book.Price), Parameter: nameof(Book.Price)),
+                (Rule: IsInvalid(book.ISBN), Parameter: nameof(Book.ISBN)),
+                (Rule: IsInvalid(book.PageCount), Parameter: nameof(Book.PageCount)),
+                (Rule: IsInvalid(book.ReleaseDate), Parameter: nameof(Book.ReleaseDate)),
+                (Rule: IsInvalid(book.InStock), Parameter: nameof(Book.InStock)));
         }
 
         private static void ValidateBookIsNotNull(Book book)
@@ -24,6 +34,36 @@ namespace SallyLibrary.App.Services.Foundations.Books
         {
             Condition = id == Guid.Empty,
             Message = "Id is required"
+        };
+
+        private static dynamic IsInvalid(string text) => new
+        {
+            Condition = String.IsNullOrWhiteSpace(text),
+            Message = "Text is required"
+        };
+
+        private static dynamic IsInvalid(double Number) => new
+        {
+            Condition = Number == default,
+            Message = "Price is required"
+        };
+
+        private static dynamic IsInvalid(int Number) => new
+        {
+            Condition = Number == default,
+            Message = "Number is required"
+        };
+
+        private static dynamic IsInvalid(DateTimeOffset date) => new
+        {
+            Condition = date == default,
+            Message = "Date is required"
+        };
+
+         private static dynamic IsInvalid(bool input) => new
+        {
+            Condition = input == default,
+            Message = "LogicAnswer is required"
         };
 
         private static void Validate(params (dynamic Rule, string Parameter)[] validations)

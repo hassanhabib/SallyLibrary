@@ -19,7 +19,15 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             // given
             var randomBook = new Book
             {
-                Id = Guid.NewGuid()
+                Id = Guid.NewGuid(),
+                Title = "AnotherThing",
+                Description = "Something",
+                Author = "something",
+                Price = 2,
+                ISBN = "Something",
+                PageCount = 2,
+                ReleaseDate = new DateTime(2008, 5, 1, 8, 30, 0),
+                InStock = true,
             };
 
             Book inputBook = randomBook;
