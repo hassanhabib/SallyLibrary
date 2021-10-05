@@ -7,9 +7,7 @@ using System;
 using FluentAssertions;
 using Force.DeepCloner;
 using Moq;
-using SallyLibrary.App.Brokers.Storages;
 using SallyLibrary.App.Models.Books;
-using SallyLibrary.App.Services.Foundations.Books;
 using Xunit;
 
 namespace SallyLibrary.App.Tests.Unit.Services.Foundations
@@ -34,7 +32,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                     .Returns(storageBook);
 
             // when
-            Book actualBook = 
+            Book actualBook =
                 this.bookService.AddBook(inputBook);
 
             // then

@@ -4,13 +4,9 @@
 // ---------------------------------------------------------------
 
 using System;
-using FluentAssertions;
-using Force.DeepCloner;
 using Moq;
-using SallyLibrary.App.Brokers.Storages;
 using SallyLibrary.App.Models.Books;
 using SallyLibrary.App.Models.Books.Exceptions;
-using SallyLibrary.App.Services.Foundations.Books;
 using Xunit;
 
 namespace SallyLibrary.App.Tests.Unit.Services.Foundations
@@ -22,7 +18,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         {
             // given
             Book nullBook = null;
-            
+
             // when
             Action modifyBookAction = () =>
                 this.bookService.ModifyBook(nullBook);

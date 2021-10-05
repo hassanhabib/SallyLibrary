@@ -30,9 +30,9 @@ namespace SallyLibrary.App.Services.Foundations.Books
         {
             var invalidBookException = new InvalidBookException();
 
-            foreach((dynamic rule, string parameter) in validations)
+            foreach ((dynamic rule, string parameter) in validations)
             {
-                if(rule.Condition)
+                if (rule.Condition)
                 {
                     invalidBookException.UpsertDataList(
                         key: parameter,

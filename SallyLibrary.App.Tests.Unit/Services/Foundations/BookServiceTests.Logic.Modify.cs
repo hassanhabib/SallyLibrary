@@ -5,11 +5,8 @@
 
 using System;
 using FluentAssertions;
-using Force.DeepCloner;
 using Moq;
-using SallyLibrary.App.Brokers.Storages;
 using SallyLibrary.App.Models.Books;
-using SallyLibrary.App.Services.Foundations.Books;
 using Xunit;
 
 namespace SallyLibrary.App.Tests.Unit.Services.Foundations
@@ -29,7 +26,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             Book storageBook = inputBook;
             Book expectedBook = storageBook;
 
-            this.storageBrokerMock.Setup(broker => 
+            this.storageBrokerMock.Setup(broker =>
                 broker.UpdateBook(inputBook))
                     .Returns(storageBook);
 

@@ -5,12 +5,9 @@
 
 using System;
 using FluentAssertions;
-using Force.DeepCloner;
 using Moq;
-using SallyLibrary.App.Brokers.Storages;
 using SallyLibrary.App.Models.Books;
 using SallyLibrary.App.Models.Books.Exceptions;
-using SallyLibrary.App.Services.Foundations.Books;
 using Xunit;
 
 namespace SallyLibrary.App.Tests.Unit.Services.Foundations
@@ -42,8 +39,8 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         {
             // given
             var invalidBook = new Book();
-            
-            var expectedInvalidBookException = 
+
+            var expectedInvalidBookException =
                 new InvalidBookException();
 
             expectedInvalidBookException.AddData(
@@ -59,7 +56,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 this.bookService.AddBook(invalidBook);
 
             // then
-            InvalidBookException actualInvalidBookException = 
+            InvalidBookException actualInvalidBookException =
                 Assert.Throws<InvalidBookException>(addBookAction);
 
             actualInvalidBookException.Data.Should().BeEquivalentTo(
