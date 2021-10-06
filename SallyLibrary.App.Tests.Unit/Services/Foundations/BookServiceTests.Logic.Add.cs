@@ -18,19 +18,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         public void ShouldAddBook()
         {
             // given
-            var randomBook = new Book
-            {
-                Id = Guid.NewGuid(),
-                Title = "something",
-                Description = "something",
-                Author = "something",
-                Price = 2.2,
-                ISBN = "Something",
-                PageCount = 2,
-                ReleaseDate = new DateTime(2008, 5, 1, 8, 30, 0),
-                InStock = true
-            };
-
+            Book randomBook = CreateRandomBook();
             Book inputBook = randomBook;
             Book storageBook = inputBook;
             Book expectedBook = storageBook.DeepClone();

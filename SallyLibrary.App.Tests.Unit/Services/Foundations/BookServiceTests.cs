@@ -3,9 +3,13 @@
 // FREE TO USE AS LONG AS SOFTWARE FUNDS ARE DONATED TO THE POOR
 // ---------------------------------------------------------------
 
+using System;
 using Moq;
 using SallyLibrary.App.Brokers.Storages;
+using SallyLibrary.App.Models.Books;
 using SallyLibrary.App.Services.Foundations.Books;
+using Tynamix.ObjectFiller;
+using Xunit;
 
 namespace SallyLibrary.App.Tests.Unit.Services.Foundations
 {
@@ -20,6 +24,23 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
 
             this.bookService = new BookService(
                 storageBroker: this.storageBrokerMock.Object);
+        }
+
+        private static Book CreateRandomBook() =>
+            CreateBookFiller().Create();
+
+        private static DateTimeOffset GetRandomDateTimeOffset() =>
+            new DateTimeRange(earliestDate: new DateTime()).GetValue();
+
+        private static Filler<Book> CreateBookFiller()
+        {
+            var filler = new Filler<Book>();
+
+            filler.Setup()
+                .OnType<DateTimeOffset>().Use(GetRandomDateTimeOffset())
+                .OnType<bool>().Use(true);
+
+            return filler;
         }
     }
 }
