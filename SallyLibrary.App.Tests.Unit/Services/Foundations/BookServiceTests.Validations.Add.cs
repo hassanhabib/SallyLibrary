@@ -39,7 +39,6 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         {
             // given
             var invalidBook = new Book();
-            invalidBook.InStock = true;
 
             var expectedInvalidBookException =
                 new InvalidBookException();
