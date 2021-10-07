@@ -19,7 +19,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             // given
             Guid randomId = Guid.NewGuid();
             Guid inputBookId = randomId;
-            Book randomBook = new Book();
+            Book randomBook = CreateRandomBook();
             Book storageBook = randomBook;
             Book expectedBook = storageBook;
 
