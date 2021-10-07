@@ -17,9 +17,8 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         public void ShouldRetrieveBookById()
         {
             // given
-            Guid randomId = Guid.NewGuid();
-            Guid inputBookId = randomId;
             Book randomBook = CreateRandomBook();
+            Guid inputBookId = randomBook.Id;
             Book storageBook = randomBook;
             Book expectedBook = storageBook;
 
