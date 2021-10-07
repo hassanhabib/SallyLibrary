@@ -23,8 +23,13 @@ namespace SallyLibrary.App.Services.Foundations.Books
             return this.storageBroker.InsertBook(book);
         }
 
-        public Book RetrieveBookById(Guid id) =>
-            this.storageBroker.SelectBookById(id);
+        public Book RetrieveBookById(Guid id)
+        {
+            ValidateBookById(id);
+            return this.storageBroker.SelectBookById(id);
+
+        }
+            
 
         public Book ModifyBook(Book book)
         {

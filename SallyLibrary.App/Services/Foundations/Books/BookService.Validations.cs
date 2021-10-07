@@ -25,6 +25,10 @@ namespace SallyLibrary.App.Services.Foundations.Books
                 (Rule: IsInvalid(book.ReleaseDate), Parameter: nameof(Book.ReleaseDate)),
                 (Rule: IsInvalid(book.ISBN), Parameter: nameof(Book.ISBN)));
         }
+        private static void ValidateBookById(Guid id)
+        {
+            Validate((Rule: IsInvalid(id), Parameter: nameof(Book.Id)));
+        }
 
         private static void ValidateBookIsNotNull(Book book)
         {

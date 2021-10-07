@@ -39,7 +39,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         {
             // given
             var invalidBook = new Book();
-
+          
             var expectedInvalidBookException =
                 new InvalidBookException();
 
@@ -70,6 +70,10 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             expectedInvalidBookException.AddData(
                 key: nameof(Book.ReleaseDate),
                 values: "Date is required");
+
+            expectedInvalidBookException.AddData(
+                key: nameof(Book.InStock),
+                values: "LogicAnswer is required");
 
             expectedInvalidBookException.AddData(
                 key: nameof(Book.ISBN),
