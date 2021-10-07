@@ -14,7 +14,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
     public partial class BookServiceTests
     {
         [Fact]
-        public void ShouldRemoveById()
+        public void ShouldRemoveBook()
         {
             //given
             Book randomBook = CreateRandomBook();
@@ -45,6 +45,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             this.storageBrokerMock.Verify(broker =>
                 broker.DeleteBook(inputBook),
                     Times.Once);
+
             this.storageBrokerMock.VerifyNoOtherCalls();
         }
     }
