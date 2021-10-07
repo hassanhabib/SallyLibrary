@@ -26,6 +26,7 @@ namespace SallyLibrary.App.Services.Foundations.Books
         public Book RetrieveBookById(Guid id)
         {
             ValidateBookById(id);
+
             return this.storageBroker.SelectBookById(id);
 
         }
@@ -39,6 +40,8 @@ namespace SallyLibrary.App.Services.Foundations.Books
 
         public Book RemoveBookById(Guid id)
         {
+            ValidateBookById(id);
+
             Book selectBookById =
                 this.storageBroker.SelectBookById(id);
 

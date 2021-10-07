@@ -49,6 +49,5 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
 
             this.storageBrokerMock.VerifyNoOtherCalls();
         }
-       
     }
 }
