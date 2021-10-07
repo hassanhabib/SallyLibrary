@@ -72,10 +72,6 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 values: "Date is required");
 
             expectedInvalidBookException.AddData(
-                key: nameof(Book.InStock),
-                values: "LogicAnswer is required");
-
-            expectedInvalidBookException.AddData(
                 key: nameof(Book.ISBN),
                 values: "Text is required");
 
