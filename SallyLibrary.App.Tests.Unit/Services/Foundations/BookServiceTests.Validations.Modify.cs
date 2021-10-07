@@ -35,7 +35,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         }
 
         [Fact]
-        public void ShouldThrowInvalidBookExceptionOnModifyIfTheBookIsInvalid()
+        public void ShouldThrowInvalidBookExceptionOnModifIfTheBookIsInvalid()
         {
             // given
             var invalidBook = new Book();
