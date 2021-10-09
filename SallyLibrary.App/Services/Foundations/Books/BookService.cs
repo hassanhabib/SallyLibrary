@@ -6,7 +6,6 @@
 using System;
 using SallyLibrary.App.Brokers.Storages;
 using SallyLibrary.App.Models.Books;
-using SallyLibrary.App.Models.Books.Exceptions;
 
 namespace SallyLibrary.App.Services.Foundations.Books
 {
@@ -28,14 +27,14 @@ namespace SallyLibrary.App.Services.Foundations.Books
         {
             ValidateBookById(id);
 
-            Book maybeBook = 
+            Book maybeBook =
                 this.storageBroker.SelectBookById(id);
 
             ValidateStorageBook(id, maybeBook);
 
             return maybeBook;
         }
-            
+
         public Book ModifyBook(Book book)
         {
             ValidateBook(book);
