@@ -28,15 +28,12 @@ namespace SallyLibrary.App.Services.Foundations.Books
         {
             ValidateBookById(id);
 
-            Book storageBook = this.storageBroker.SelectBookById(id);
+            Book maybeBook = 
+                this.storageBroker.SelectBookById(id);
 
-            if (storageBook == null)
-            {
-                throw new NotFoundBookException(id);
-            }
+            ValidateStorageBook(id, maybeBook);
 
-            return storageBook;
-
+            return maybeBook;
         }
             
         public Book ModifyBook(Book book)

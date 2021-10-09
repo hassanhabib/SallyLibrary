@@ -36,6 +36,14 @@ namespace SallyLibrary.App.Services.Foundations.Books
             }
         }
 
+        private static void ValidateStorageBook(Guid bookId, Book maybeBook)
+        {
+            if (maybeBook is null)
+            {
+                throw new NotFoundBookException(bookId);
+            }
+        }
+
         private static dynamic IsInvalid(Guid id) => new
         {
             Condition = id == Guid.Empty,
