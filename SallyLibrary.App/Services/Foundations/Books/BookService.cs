@@ -6,6 +6,7 @@
 using System;
 using SallyLibrary.App.Brokers.Storages;
 using SallyLibrary.App.Models.Books;
+using SallyLibrary.App.Models.Books.Exceptions;
 
 namespace SallyLibrary.App.Services.Foundations.Books
 {
@@ -27,7 +28,14 @@ namespace SallyLibrary.App.Services.Foundations.Books
         {
             ValidateBookById(id);
 
-            return this.storageBroker.SelectBookById(id);
+            Book storageBook = this.storageBroker.SelectBookById(id);
+
+            if (storageBook == null)
+            {
+                throw new NotFoundBookException(id);
+            }
+
+            return storageBook;
 
         }
             
