@@ -44,5 +44,33 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
 
             this.storageBrokerMock.VerifyNoOtherCalls();
         }
+
+        [Fact]
+        public void ShouldThrowNotFoundExceptionIfBookIsNotFound()
+        {
+            // given
+            Guid someId = Guid.NewGuid();
+            Book noBook = null;
+
+            var notFoundBookException =
+                new NotFoundBookException(someId);
+
+            this.storageBrokerMock.Setup(broker =>
+                broker.SelectBookById(It.IsAny<Guid>()))
+                    .Returns(noBook);
+
+            // when
+            Action retrieveBookByIdAction = () =>
+                this.bookService.RetrieveBookById(someId);
+
+            // then
+            Assert.Throws<NotFoundBookException>(retrieveBookByIdAction);
+
+            this.storageBrokerMock.Verify(broker =>
+                broker.SelectBookById(It.IsAny<Guid>()),
+                    Times.Once);
+
+            this.storageBrokerMock.VerifyNoOtherCalls();
+        }
     }
 }
