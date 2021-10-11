@@ -46,11 +46,13 @@ namespace SallyLibrary.App.Services.Foundations.Books
         {
             ValidateBookById(id);
 
-            Book selectBookById =
+            Book maybeBook =
                 this.storageBroker.SelectBookById(id);
 
+            ValidateStorageBook(id, maybeBook);
+
             Book deleteBook =
-                this.storageBroker.DeleteBook(selectBookById);
+                this.storageBroker.DeleteBook(maybeBook);
 
             return deleteBook;
         }
