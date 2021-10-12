@@ -25,10 +25,19 @@ namespace SallyLibrary.App.Services.Foundations.Books
 
                 return this.storageBroker.InsertBook(book);
             }
+            catch (NullBookException nullBookException)
+            {
+                throw nullBookException;
+            }
+            catch (InvalidBookException invalidBookException)
+            {
+                throw invalidBookException;
+            }
             catch (Exception exception)
             {
                 throw new BookServiceException(exception);
             }
+            
         }
 
         public Book RetrieveBookById(Guid id)
