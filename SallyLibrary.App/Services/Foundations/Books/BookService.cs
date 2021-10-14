@@ -37,7 +37,6 @@ namespace SallyLibrary.App.Services.Foundations.Books
             {
                 throw new BookServiceException(exception);
             }
-            
         }
 
         public Book RetrieveBookById(Guid id)
