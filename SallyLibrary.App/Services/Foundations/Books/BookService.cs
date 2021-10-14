@@ -34,8 +34,9 @@ namespace SallyLibrary.App.Services.Foundations.Books
                 throw invalidBookException;
             }
             catch (Exception exception)
-            {   
-                throw new BookServiceException(exception);
+            {
+                var failedBookServiceException = new  FailedBookServiceException(exception);
+                throw new BookServiceException(failedBookServiceException);
             }
         }
 
