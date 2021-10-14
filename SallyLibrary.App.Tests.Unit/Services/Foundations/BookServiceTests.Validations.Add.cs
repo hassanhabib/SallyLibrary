@@ -20,12 +20,21 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             // given
             Book nullBook = null;
 
+            var nullBookException = new NullBookException();
+
+            var expectedBookValidationException =
+                new BookValidationException(nullBookException);
+
             // when
             Action addBookAction = () =>
                 this.bookService.AddBook(nullBook);
 
             // then
-            Assert.Throws<NullBookException>(addBookAction);
+            BookValidationException actualBookValisationException =
+                Assert.Throws<BookValidationException>(addBookAction);
+
+            SameExceptionAs(actualBookValisationException, expectedBookValidationException)
+                .Should().BeTrue();
 
             this.storageBrokerMock.Verify(broker =>
                 broker.InsertBook(It.IsAny<Book>()),
