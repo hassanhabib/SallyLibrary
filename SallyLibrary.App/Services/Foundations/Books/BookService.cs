@@ -27,7 +27,7 @@ namespace SallyLibrary.App.Services.Foundations.Books
             }
             catch (NullBookException nullBookException)
             {
-                throw nullBookException;
+                throw new BookValidationException(nullBookException);
             }
             catch (InvalidBookException invalidBookException)
             {
