@@ -9,6 +9,7 @@ using SallyLibrary.App.Brokers.Storages;
 using SallyLibrary.App.Models.Books;
 using SallyLibrary.App.Services.Foundations.Books;
 using Tynamix.ObjectFiller;
+using System.Linq.Expressions;
 
 namespace SallyLibrary.App.Tests.Unit.Services.Foundations
 {
@@ -30,6 +31,13 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
 
         private static DateTimeOffset GetRandomDateTimeOffset() =>
             new DateTimeRange(earliestDate: new DateTime()).GetValue();
+
+        private static bool SameExceptionAs(Exception actualException, Exception expectedException)
+        {
+            return 
+                actualException.Message == expectedException.Message 
+                && actualException.InnerException.Message == expectedException.InnerException.Message;
+        }
 
         private static Filler<Book> CreateBookFiller()
         {

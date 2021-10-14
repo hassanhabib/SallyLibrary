@@ -22,8 +22,11 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             var someBook = CreateRandomBook();
             var serviceException = new Exception();
 
+            var failedBookServiceException =
+                new FailedBookServiceException(serviceException);
+
             var expectedBookServiceException =
-                new BookServiceException(serviceException);
+                new BookServiceException(failedBookServiceException);
 
             this.storageBrokerMock.Setup(broker =>
                 broker.InsertBook(It.IsAny<Book>()))
@@ -34,7 +37,11 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 this.bookService.AddBook(someBook);
 
             // then
-            Assert.Throws<BookServiceException>(addBookAction);
+            BookServiceException actualBookServiceException = 
+                Assert.Throws<BookServiceException>(addBookAction);
+
+            SameExceptionAs(actualBookServiceException, expectedBookServiceException)
+                .Should().BeTrue();
 
             this.storageBrokerMock.Verify(broker =>
                 broker.InsertBook(It.IsAny<Book>()),
