@@ -95,10 +95,9 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             BookValidationException actualInvalidBookException =
                 Assert.Throws<BookValidationException>(addBookAction);
 
+            SameExceptionAs(actualInvalidBookException, expectedBookValidationException)
+                .Should().BeTrue();
 
-            //SameExceptionAs(actualInvalidBookException, expectedBookValidationException)
-            //    .Should().BeTrue();
-            // ???? or simillarly :
             actualInvalidBookException.Data.Should().BeEquivalentTo(
                 expectedBookValidationException.Data);
 
