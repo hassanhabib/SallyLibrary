@@ -4,6 +4,7 @@
 // ---------------------------------------------------------------
 
 using System;
+using SallyLibrary.App.Brokers.Loggings;
 using SallyLibrary.App.Brokers.Storages;
 using SallyLibrary.App.Models.Books;
 using SallyLibrary.App.Models.Books.Exceptions;
@@ -13,9 +14,15 @@ namespace SallyLibrary.App.Services.Foundations.Books
     public partial class BookService : IBookService
     {
         private readonly IStorageBroker storageBroker;
+        private readonly ILoggingBroker loggingBroker;
 
-        public BookService(IStorageBroker storageBroker) =>
+        public BookService(
+            IStorageBroker storageBroker,
+            ILoggingBroker loggingBroker)
+        {
             this.storageBroker = storageBroker;
+            this.loggingBroker = loggingBroker;
+        }
 
         public Book AddBook(Book book)
         {
@@ -35,7 +42,7 @@ namespace SallyLibrary.App.Services.Foundations.Books
             }
             catch (Exception exception)
             {
-                var failedBookServiceException = new  FailedBookServiceException(exception);
+                var failedBookServiceException = new FailedBookServiceException(exception);
                 throw new BookServiceException(failedBookServiceException);
             }
         }

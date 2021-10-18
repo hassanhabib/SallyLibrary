@@ -10,20 +10,24 @@ using SallyLibrary.App.Models.Books;
 using SallyLibrary.App.Services.Foundations.Books;
 using Tynamix.ObjectFiller;
 using System.Linq.Expressions;
+using SallyLibrary.App.Brokers.Loggings;
 
 namespace SallyLibrary.App.Tests.Unit.Services.Foundations
 {
     public partial class BookServiceTests
     {
         private readonly Mock<IStorageBroker> storageBrokerMock;
+        private readonly Mock<ILoggingBroker> loggingBrokerMock;
         private readonly IBookService bookService;
 
         public BookServiceTests()
         {
             this.storageBrokerMock = new Mock<IStorageBroker>();
+            this.loggingBrokerMock = new Mock<ILoggingBroker>();
 
             this.bookService = new BookService(
-                storageBroker: this.storageBrokerMock.Object);
+                storageBroker: this.storageBrokerMock.Object,
+                loggingBroker: this.loggingBrokerMock.Object);
         }
 
         private static Book CreateRandomBook() =>

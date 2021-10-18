@@ -31,6 +31,6 @@ namespace SallyLibrary.App.Brokers.Loggings
             this.logger.LogTrace(message);
 
         public void LogWarning(string message) =>
-            this.logger.LogTrace(message);
+            this.logger.LogWarning(message);
     }
 }
