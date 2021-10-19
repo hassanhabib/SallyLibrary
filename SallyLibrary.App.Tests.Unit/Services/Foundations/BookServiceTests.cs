@@ -36,10 +36,10 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         private static DateTimeOffset GetRandomDateTimeOffset() =>
             new DateTimeRange(earliestDate: new DateTime()).GetValue();
 
-        private static bool SameExceptionAs(Exception actualException, Exception expectedException)
+        private static Expression<Func<Exception, bool>> SameExceptionAs(Exception expectedException)
         {
-            return 
-                actualException.Message == expectedException.Message 
+            return actualException =>
+                actualException.Message == expectedException.Message
                 && actualException.InnerException.Message == expectedException.InnerException.Message;
         }
 

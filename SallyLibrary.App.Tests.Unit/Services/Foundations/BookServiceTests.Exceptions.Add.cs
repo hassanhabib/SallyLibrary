@@ -36,18 +36,20 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             Action addBookAction = () =>
                 this.bookService.AddBook(someBook);
 
-            // then
-            BookServiceException actualBookServiceException = 
-                Assert.Throws<BookServiceException>(addBookAction);
-
-            SameExceptionAs(actualBookServiceException, expectedBookServiceException)
-                .Should().BeTrue();
+            // then 
+            Assert.Throws<BookServiceException>(addBookAction);
 
             this.storageBrokerMock.Verify(broker =>
                 broker.InsertBook(It.IsAny<Book>()),
                     Times.Once);
 
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedBookServiceException))),
+                        Times.Once);
+
             this.storageBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
         }
     }
 }
