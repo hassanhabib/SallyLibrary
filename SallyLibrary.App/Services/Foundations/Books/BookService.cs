@@ -62,14 +62,25 @@ namespace SallyLibrary.App.Services.Foundations.Books
 
         public Book RetrieveBookById(Guid id)
         {
-            ValidateBookById(id);
+            try
+            {
+                ValidateBookById(id);
 
-            Book maybeBook =
-                this.storageBroker.SelectBookById(id);
+                Book maybeBook =
+                    this.storageBroker.SelectBookById(id);
 
-            ValidateStorageBook(id, maybeBook);
+                ValidateStorageBook(id, maybeBook);
 
-            return maybeBook;
+                return maybeBook;
+            }
+            catch (InvalidBookException invalidBookException)
+            {
+                var bookValidationException = new BookValidationException(invalidBookException);
+                this.loggingBroker.LogError(bookValidationException);
+
+                throw bookValidationException;
+            }
+
         }
 
         public Book ModifyBook(Book book)

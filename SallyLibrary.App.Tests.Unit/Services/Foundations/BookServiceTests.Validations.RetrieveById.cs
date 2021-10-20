@@ -35,7 +35,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 this.bookService.RetrieveBookById(invalidBookId);
 
             // then
-            Assert.Throws<InvalidBookException>(retireveBookByIdAction);
+            Assert.Throws<BookValidationException>(retireveBookByIdAction);
 
             this.loggingBrokerMock.Verify(broker =>
                 broker.LogError(It.Is(SameExceptionAs(expectedBookValidationException))),
