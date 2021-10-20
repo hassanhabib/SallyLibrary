@@ -64,6 +64,9 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             var notFoundBookException =
                 new NotFoundBookException(someId);
 
+            var expectedBookValidationException =
+                new BookValidationException(notFoundBookException);
+
             this.storageBrokerMock.Setup(broker =>
                 broker.SelectBookById(It.IsAny<Guid>()))
                     .Returns(noBook);
@@ -73,7 +76,11 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 this.bookService.RemoveBookById(someId);
 
             // then
-            Assert.Throws<NotFoundBookException>(retrieveBookByIdAction);
+            Assert.Throws<BookValidationException>(retrieveBookByIdAction);
+
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(expectedBookValidationException))),
+                    Times.Once);
 
             this.storageBrokerMock.Verify(broker =>
                 broker.SelectBookById(It.IsAny<Guid>()),
