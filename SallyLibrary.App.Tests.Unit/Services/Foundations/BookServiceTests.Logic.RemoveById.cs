@@ -47,6 +47,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                     Times.Once);
 
             this.storageBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
         }
     }
 }

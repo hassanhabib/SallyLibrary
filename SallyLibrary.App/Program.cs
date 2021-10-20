@@ -17,4 +17,4 @@ var loggingBroker = new LoggingBroker(logger);
 var bookService = new BookService(storageBroker, loggingBroker);
 
 var book = new Book();
-//bookService.RetrieveBookById(Guid.NewGuid());
+bookService.RetrieveBookById(Guid.NewGuid());

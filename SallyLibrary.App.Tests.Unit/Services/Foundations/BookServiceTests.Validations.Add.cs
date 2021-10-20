@@ -19,7 +19,6 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         {
             // given
             Book nullBook = null;
-
             var nullBookException = new NullBookException();
 
             var expectedBookValidationException =
