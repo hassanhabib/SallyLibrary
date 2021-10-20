@@ -120,6 +120,15 @@ namespace SallyLibrary.App.Services.Foundations.Books
 
                 throw bookValidationException;
             }
+            catch (NotFoundBookException notFoundBookException)
+            {
+                var bookValidationException =
+                    new BookValidationException(notFoundBookException);
+
+                this.loggingBroker.LogError(bookValidationException);
+
+                throw bookValidationException;
+            }
         }
     }
 }
