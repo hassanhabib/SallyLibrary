@@ -19,6 +19,10 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         {
             // given
             Book nullBook = null;
+            var nullBookException = new NullBookException();
+
+            var expectedBookValidationException =
+                new BookValidationException(nullBookException);
 
             // when
             Action modifyBookAction = () =>
@@ -27,11 +31,16 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             // then
             Assert.Throws<NullBookException>(modifyBookAction);
 
+            this.loggingBrokerMock.Verify(broker =>
+               broker.LogError(It.Is(SameExceptionAs(expectedBookValidationException))),
+                   Times.Once);
+
             this.storageBrokerMock.Verify(broker =>
                 broker.UpdateBook(It.IsAny<Book>()),
                     Times.Never);
 
             this.storageBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
         }
 
         [Fact]
@@ -92,6 +101,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                     Times.Never);
 
             this.storageBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
         }
 
     }
