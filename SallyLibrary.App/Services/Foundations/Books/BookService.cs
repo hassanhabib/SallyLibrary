@@ -95,22 +95,31 @@ namespace SallyLibrary.App.Services.Foundations.Books
                 throw bookValidationException;
             }
             
-
         }
 
             public Book RemoveBookById(Guid id)
         {
-            ValidateBookById(id);
+            try
+            {
+                ValidateBookById(id);
 
-            Book maybeBook =
-                this.storageBroker.SelectBookById(id);
+                Book maybeBook =
+                    this.storageBroker.SelectBookById(id);
 
-            ValidateStorageBook(id, maybeBook);
+                ValidateStorageBook(id, maybeBook);
 
-            Book deleteBook =
-                this.storageBroker.DeleteBook(maybeBook);
+                Book deleteBook =
+                    this.storageBroker.DeleteBook(maybeBook);
 
-            return deleteBook;
+                return deleteBook;
+            }
+            catch (InvalidBookException invalidBookException)
+            {
+                var bookValidationException = new BookValidationException(invalidBookException);
+                this.loggingBroker.LogError(bookValidationException);
+
+                throw bookValidationException;
+            }
         }
     }
 }
