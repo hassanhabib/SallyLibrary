@@ -34,7 +34,10 @@ namespace SallyLibrary.App.Services.Foundations.Books
             }
             catch (NullBookException nullBookException)
             {
-                throw new BookValidationException(nullBookException);
+                var bookvalidationException = new BookValidationException(nullBookException);
+                this.loggingBroker.LogError(bookvalidationException);
+
+                throw bookvalidationException;
             }
             catch (InvalidBookException invalidBookException)
             {
