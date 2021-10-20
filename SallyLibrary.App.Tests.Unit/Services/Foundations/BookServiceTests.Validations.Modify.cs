@@ -85,16 +85,19 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 key: nameof(Book.ISBN),
                 values: "Text is required");
 
+            var expectedBookValidationException =
+                new BookValidationException(expectedInvalidBookException);
+
             // when
             Action ModifyBookAction = () =>
                 this.bookService.ModifyBook(invalidBook);
 
             // then
-            InvalidBookException actualInvalidBookException =
-                Assert.Throws<InvalidBookException>(ModifyBookAction);
+            Assert.Throws<InvalidBookException>(ModifyBookAction);
 
-            actualInvalidBookException.Data.Should().BeEquivalentTo(
-                expectedInvalidBookException.Data);
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(expectedBookValidationException))),
+                    Times.Once);
 
             this.storageBrokerMock.Verify(broker =>
                 broker.UpdateBook(It.IsAny<Book>()),
