@@ -93,14 +93,11 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 this.bookService.AddBook(invalidBook);
 
             // then
-            BookValidationException actualInvalidBookException =
-                Assert.Throws<BookValidationException>(addBookAction);
+            Assert.Throws<BookValidationException>(addBookAction);
 
-            //SameExceptionAs(actualInvalidBookException,expectedBookValidationException)
-            //    .Should().BeTrue();
-
-            actualInvalidBookException.Data.Should().BeEquivalentTo(
-                expectedBookValidationException.Data);
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(expectedBookValidationException))),
+                    Times.Once);
 
             this.storageBrokerMock.Verify(broker =>
                 broker.InsertBook(It.IsAny<Book>()),
