@@ -29,7 +29,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 this.bookService.ModifyBook(nullBook);
 
             // then
-            Assert.Throws<NullBookException>(modifyBookAction);
+            Assert.Throws<BookValidationException>(modifyBookAction);
 
             this.loggingBrokerMock.Verify(broker =>
                broker.LogError(It.Is(SameExceptionAs(expectedBookValidationException))),
@@ -93,7 +93,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 this.bookService.ModifyBook(invalidBook);
 
             // then
-            Assert.Throws<InvalidBookException>(ModifyBookAction);
+            Assert.Throws<BookValidationException>(ModifyBookAction);
 
             this.loggingBrokerMock.Verify(broker =>
                 broker.LogError(It.Is(SameExceptionAs(expectedBookValidationException))),
