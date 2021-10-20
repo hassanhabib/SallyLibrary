@@ -30,17 +30,18 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                 this.bookService.AddBook(nullBook);
 
             // then
-            BookValidationException actualNullBookValisationException =
-                Assert.Throws<BookValidationException>(addBookAction);
+            Assert.Throws<BookValidationException>(addBookAction);
 
-            //SameExceptionAs(actualNullBookValisationException, expectedBookValidationException)
-            //    .Should().BeTrue();
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(expectedBookValidationException))),
+                    Times.Once);
 
             this.storageBrokerMock.Verify(broker =>
                 broker.InsertBook(It.IsAny<Book>()),
                     Times.Never);
 
             this.storageBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
         }
 
         [Fact]
@@ -95,7 +96,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             BookValidationException actualInvalidBookException =
                 Assert.Throws<BookValidationException>(addBookAction);
 
-            //SameExceptionAs(actualInvalidBookException, expectedBookValidationException)
+            //SameExceptionAs(actualInvalidBookException,expectedBookValidationException)
             //    .Should().BeTrue();
 
             actualInvalidBookException.Data.Should().BeEquivalentTo(
@@ -106,6 +107,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
                     Times.Never);
 
             this.storageBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
         }
     }
 }
