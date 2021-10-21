@@ -15,7 +15,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
     public partial class BookServiceTests
     {
         [Fact]
-        public void ShouldThrowNullBookExceptionOnAddIfBookIsNull()
+        public void ShouldThrowNullBookExceptionOnAddIfBookIsNullAndLogIt()
         {
             // given
             Book nullBook = null;
@@ -44,7 +44,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         }
 
         [Fact]
-        public void ShouldThrowInvalidBookExceptionIfBookIsInvalid()
+        public void ShouldThrowInvalidBookExceptionIfBookIsInvalidAndLogIt()
         {
             // given
             var invalidBook = new Book();

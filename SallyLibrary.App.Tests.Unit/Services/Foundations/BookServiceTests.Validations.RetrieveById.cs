@@ -51,7 +51,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         }
 
         [Fact]
-        public void ShouldThrowNotFoundExceptionOnRetrieveByIdIfBookIsNotFound()
+        public void ShouldThrowNotFoundExceptionOnRetrieveByIdIfBookIsNotFoundAndLogIt()
         {
             // given
             Guid someId = Guid.NewGuid();

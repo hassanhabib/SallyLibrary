@@ -15,7 +15,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
     public partial class BookServiceTests
     {
         [Fact]
-        public void ShouldThrowValidaitonExceptionOnRemoveByIdIfIdIsInvalid()
+        public void ShouldThrowValidaitonExceptionOnRemoveByIdIfIdIsInvalidAndLogIt()
         {
             // given
 
@@ -55,7 +55,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
         }
 
         [Fact]
-        public void ShouldThrowNotFoundExceptionOnRemoveByIdIfBookIsNotFound()
+        public void ShouldThrowNotFoundExceptionOnRemoveByIdIfBookIsNotFoundAndLogIt()
         {
             // given
             Guid someId = Guid.NewGuid();

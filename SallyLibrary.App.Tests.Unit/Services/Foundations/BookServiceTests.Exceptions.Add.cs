@@ -16,7 +16,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
     public partial class BookServiceTests
     {
         [Fact]
-        public void ShouldThrowServiceExceptionOnAddIfServiceErrorOccurs()
+        public void ShouldThrowServiceExceptionOnAddIfServiceErrorOccursAndLogIt()
         {
             // given
             var someBook = CreateRandomBook();
