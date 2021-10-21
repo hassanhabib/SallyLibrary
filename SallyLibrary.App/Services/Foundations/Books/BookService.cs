@@ -32,37 +32,19 @@ namespace SallyLibrary.App.Services.Foundations.Books
             return this.storageBroker.InsertBook(book);
         });
 
-        public Book RetrieveBookById(Guid id)
-        {
-            try
-            {
-                ValidateBookById(id);
+        public Book RetrieveBookById(Guid id) =>
+        TryCatch(() =>
+         {
+             ValidateBookById(id);
 
-                Book maybeBook =
-                    this.storageBroker.SelectBookById(id);
+             Book maybeBook =
+                this.storageBroker.SelectBookById(id);
 
-                ValidateStorageBook(id, maybeBook);
+             ValidateStorageBook(id, maybeBook);
 
-                return maybeBook;
-            }
-            catch (InvalidBookException invalidBookException)
-            {
-                var bookValidationException = new BookValidationException(invalidBookException);
-                this.loggingBroker.LogError(bookValidationException);
-
-                throw bookValidationException;
-            }
-            catch (NotFoundBookException notFoundBookException)
-            {
-                var bookValidationException =
-                    new BookValidationException(notFoundBookException);
-
-                this.loggingBroker.LogError(bookValidationException);
-
-                throw bookValidationException;
-            }
-
-        }
+             return maybeBook;
+        });
+        
 
         public Book ModifyBook(Book book)
         {

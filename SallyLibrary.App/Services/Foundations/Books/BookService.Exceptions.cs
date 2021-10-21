@@ -23,6 +23,10 @@ namespace SallyLibrary.App.Services.Foundations.Books
             {
                 throw CreateAndLogValidationException(invalidBookException);
             }
+            catch (NotFoundBookException notFoundBookException)
+            {
+                throw CreateAndLogValidationException(notFoundBookException);
+            }
             catch (Exception exception)
             {
                 var failedBookServiceException =
