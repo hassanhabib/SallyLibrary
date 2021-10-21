@@ -32,6 +32,14 @@ namespace SallyLibrary.App.Services.Foundations.Books
             return this.storageBroker.InsertBook(book);
         });
 
+        public Book ModifyBook(Book book) =>
+        TryCatch(() =>
+        {
+            ValidateBook(book);
+
+            return this.storageBroker.UpdateBook(book);
+        });
+
         public Book RetrieveBookById(Guid id) =>
         TryCatch(() =>
          {
@@ -45,14 +53,6 @@ namespace SallyLibrary.App.Services.Foundations.Books
              return maybeBook;
         });
         
-        public Book ModifyBook(Book book) =>
-        TryCatch(() =>
-        {
-            ValidateBook(book);
-
-            return this.storageBroker.UpdateBook(book);
-        });
-
         public Book RemoveBookById(Guid id) =>
         TryCatch(() =>
         {
