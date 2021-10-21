@@ -24,41 +24,13 @@ namespace SallyLibrary.App.Services.Foundations.Books
             this.loggingBroker = loggingBroker;
         }
 
-        public Book AddBook(Book book)
+        public Book AddBook(Book book) =>
+        TryCatch(() =>
         {
-            try
-            {
-                ValidateBook(book);
+            ValidateBook(book);
 
-                return this.storageBroker.InsertBook(book);
-            }
-            catch (NullBookException nullBookException)
-            {
-                var bookValidationException = new BookValidationException(nullBookException);
-                this.loggingBroker.LogError(bookValidationException);
-
-                throw bookValidationException;
-            }
-            catch (InvalidBookException invalidBookException)
-            {
-                var bookValidationException = new BookValidationException(invalidBookException);
-                this.loggingBroker.LogError(bookValidationException);
-
-                throw bookValidationException;
-            }
-            catch (Exception exception)
-            {
-                var failedBookServiceException = 
-                    new FailedBookServiceException(exception);
-                
-                var bookServiceException = 
-                    new BookServiceException(failedBookServiceException);
-
-                this.loggingBroker.LogError(bookServiceException);
-
-                throw bookServiceException;
-            }
-        }
+            return this.storageBroker.InsertBook(book);
+        });
 
         public Book RetrieveBookById(Guid id)
         {
@@ -114,10 +86,10 @@ namespace SallyLibrary.App.Services.Foundations.Books
 
                 throw bookValidationException;
             }
-            
+
         }
 
-            public Book RemoveBookById(Guid id)
+        public Book RemoveBookById(Guid id)
         {
             try
             {

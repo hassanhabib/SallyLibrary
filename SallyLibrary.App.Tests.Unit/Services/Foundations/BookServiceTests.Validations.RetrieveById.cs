@@ -15,7 +15,7 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
     public partial class BookServiceTests
     {
         [Fact]
-        public void ShouldThrowValidationExceptionOnRetrieveByIdIfIdIsInvalid()
+        public void ShouldThrowValidationExceptionOnRetrieveByIdIfIdIsInvalidAndLogIt()
         {
             // given
             Guid invalidBookId = Guid.Empty;
@@ -38,8 +38,9 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             Assert.Throws<BookValidationException>(retireveBookByIdAction);
 
             this.loggingBrokerMock.Verify(broker =>
-                broker.LogError(It.Is(SameExceptionAs(expectedBookValidationException))),
-                    Times.Once);
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedBookValidationException))),
+                        Times.Once);
 
             this.storageBrokerMock.Verify(broker =>
                 broker.SelectBookById(It.IsAny<Guid>()),
