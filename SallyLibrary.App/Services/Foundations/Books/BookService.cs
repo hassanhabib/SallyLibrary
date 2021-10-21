@@ -45,64 +45,28 @@ namespace SallyLibrary.App.Services.Foundations.Books
              return maybeBook;
         });
         
-
-        public Book ModifyBook(Book book)
+        public Book ModifyBook(Book book) =>
+        TryCatch(() =>
         {
-            try
-            {
-                ValidateBook(book);
+            ValidateBook(book);
 
-                return this.storageBroker.UpdateBook(book);
-            }
-            catch (NullBookException nullBookException)
-            {
-                var bookValidationException = new BookValidationException(nullBookException);
-                this.loggingBroker.LogError(bookValidationException);
+            return this.storageBroker.UpdateBook(book);
+        });
 
-                throw bookValidationException;
-            }
-            catch (InvalidBookException invalidBookException)
-            {
-                var bookValidationException = new BookValidationException(invalidBookException);
-                this.loggingBroker.LogError(bookValidationException);
-
-                throw bookValidationException;
-            }
-
-        }
-
-        public Book RemoveBookById(Guid id)
+        public Book RemoveBookById(Guid id) =>
+        TryCatch(() =>
         {
-            try
-            {
-                ValidateBookById(id);
+            ValidateBookById(id);
 
-                Book maybeBook =
-                    this.storageBroker.SelectBookById(id);
+            Book maybeBook =
+                this.storageBroker.SelectBookById(id);
 
-                ValidateStorageBook(id, maybeBook);
+            ValidateStorageBook(id, maybeBook);
 
-                Book deleteBook =
-                    this.storageBroker.DeleteBook(maybeBook);
+            Book deleteBook =
+                this.storageBroker.DeleteBook(maybeBook);
 
-                return deleteBook;
-            }
-            catch (InvalidBookException invalidBookException)
-            {
-                var bookValidationException = new BookValidationException(invalidBookException);
-                this.loggingBroker.LogError(bookValidationException);
-
-                throw bookValidationException;
-            }
-            catch (NotFoundBookException notFoundBookException)
-            {
-                var bookValidationException =
-                    new BookValidationException(notFoundBookException);
-
-                this.loggingBroker.LogError(bookValidationException);
-
-                throw bookValidationException;
-            }
-        }
+            return deleteBook;
+        });
     }
 }
