@@ -75,8 +75,9 @@ namespace SallyLibrary.App.Tests.Unit.Services.Foundations
             Assert.Throws<BookValidationException>(retrieveBookByIdAction);
 
             this.loggingBrokerMock.Verify(broker =>
-                broker.LogError(It.Is(SameExceptionAs(expectedBookValidationException))),
-                    Times.Once);
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedBookValidationException))),
+                        Times.Once);
 
             this.storageBrokerMock.Verify(broker =>
                 broker.SelectBookById(It.IsAny<Guid>()),
